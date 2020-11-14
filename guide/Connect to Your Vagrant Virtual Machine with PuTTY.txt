@@ -1,0 +1,12 @@
+#http://blog.l2c2.co.in/index.php/2020/02/02/ssh-using-putty-exe-into-a-vagrant-managed-kohadevbox-virtualbox-vm-on-win-10-prof/
+
+A workaround is to use PuTTYgen (a free, open-source RSA and DSA key generation utility) to import and convert the insecure_private_key into PuTTY's format (a .ppk file). 
+
+To do so, simply:
+
+1) Run "vagrant ssh-config" in your Project Folder to locate where your Identityfile (private_key) is. Notice: $HOSTNAME $PORT $LOGINNAME
+2) Open the PuTTYgen utility;
+3) Click on the Load button;
+4) open the Identityfile (it doesn't have an extension and that's fine with PuTTYgen)
+5) Toward the bottom of the PuTTYgen dialog box, change the value in the Number of bits in a generated key: field to 2048, RSA is fine
+6) Save the file, click "Save private key" (use a $NEW name and the .ppk extension).

@@ -1,0 +1,4 @@
+.vagrant/
+putty-key/*
+!www/
+www/*

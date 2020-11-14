@@ -1,0 +1,40 @@
+Installing Lucee with the unattended mode. Link guide: https://docs.lucee.org/guides/installing-lucee/installation-linux/installing-in-unattended-mode.html
+
+LUCEE_VERSION="5.3.5.092"
+LUCEE_WEB_PASS="AA11BB22"
+
+1) Download Lucee:
+
+	sudo wget -O /tmp/lucee-$LUCEE_VERSION-pl0-linux-x64-installer.run https://cdn.lucee.org/lucee-$LUCEE_VERSION-pl0-linux-x64-installer.run &> /dev/null
+
+
+2) Set the executable permission:
+
+	sudo chmod +x /tmp/lucee-$LUCEE_VERSION-pl0-linux-x64-installer.run
+
+
+3) Now you can execute the file in the terminal.
+
+	sudo ./lucee-$LUCEE_VERSION-pl0-linux-x64-installer.run --mode unattended --luceepass "$LUCEE_WEB_PASS" --installiis false &> /dev/null
+
+
+
+
+To use an option file, create a text file (lucee-options.txt in this example) and give it the following content:
+luceepass=YOURPASSWORDHERE
+installdir=/opt/lucee
+tomcatport=8888
+tomcatshutdownport=8005
+tomcatajpport=8009
+systemuser=root
+startatboot=true
+installconn=true
+apachecontrolloc=/usr/sbin/apachectl
+apachemodulesloc=
+apacheconfigloc=
+apachelogloc=
+installiis=true
+
+Installing lucee with the optionfile:
+lucee-[version]-installer.run --mode unattended --optionfile=lucee-options.txt
+
