@@ -60,12 +60,13 @@ Vagrant.configure("2") do |config|
 	end
 
 	# Sync the www/ folder within the vagrant folder
-	config.vm.synced_folder "www/", "/var/www/"
+	config.vm.synced_folder "www/", "/var/www/", :mount_options => ["dmode=755,fmode=755"]
 
 	config.vm.provision :shell, :path => "bash-scripts/packages/step-1-update-packages.sh", :privileged => true
-	config.vm.provision :shell, :path => "bash-scripts/packages/step-2-set-timezone.sh", :privileged => true, :args => BOX_TIMEZONE
+	config.vm.provision :shell, :path => "bash-scripts/packages/step-2-installing-utilities.sh", :privileged => true, :args => BOX_TIMEZONE
 	config.vm.provision :shell, :path => "bash-scripts/packages/step-3-installing-apache.sh", :privileged => true
 	config.vm.provision :shell, :path => "bash-scripts/packages/step-4-installing-lucee.sh", :privileged => true, :args => [ LUCEE_VERSION, LUCEE_WEB_PASS ]
+	config.vm.provision :shell, :path => "bash-scripts/packages/step-5-installing-nodesjs.sh", :privileged => true
 
 	config.vm.provision "shell", :path => "bash-scripts/virtual-host/setting-domain.sh", :privileged => true, :args => [ BOX_DOMAIN_NAME, BOX_DOMAIN_DIRECTORY ]
 
